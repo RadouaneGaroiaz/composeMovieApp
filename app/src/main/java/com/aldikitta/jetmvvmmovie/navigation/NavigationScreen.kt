@@ -2,8 +2,6 @@ package com.aldikitta.jetmvvmmovie.navigation
 
 object NavigationScreen {
     const val HOME = "home"
-    const val POPULAR = "popular"
-    const val TOP_RATED = "toprated"
     const val UP_COMING = "upcoming"
 
     object MovieDetail {

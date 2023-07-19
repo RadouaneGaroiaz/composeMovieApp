@@ -22,36 +22,16 @@ sealed class NavigationItem(
         }, "Home"
     )
 
-    object Popular : NavigationItem(
-        NavigationScreen.POPULAR,
-        {
-            Icon(
-                Icons.Filled.TrendingUp,
-                contentDescription = "Popular",
-            )
-        },
-        "Popular",
-    )
 
-    object TopRated : NavigationItem(
-        NavigationScreen.TOP_RATED,
-        {
-            Icon(
-                Icons.Filled.Star,
-                contentDescription = "Top Rated"
-            )
-        },
-        "Top Rated",
-    )
 
     object UpComing : NavigationItem(
         NavigationScreen.UP_COMING,
         {
             Icon(
                 Icons.Filled.Upcoming,
-                contentDescription = "Up Coming"
+                contentDescription = "Library"
             )
         },
-        "Up Coming",
+        "Library",
     )
 }
