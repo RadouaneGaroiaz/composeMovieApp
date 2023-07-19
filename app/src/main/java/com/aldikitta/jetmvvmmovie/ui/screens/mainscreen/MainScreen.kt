@@ -130,8 +130,6 @@ fun BottomNavigationUI(navController: NavController) {
     NavigationBar {
         val items = listOf(
             NavigationItem.Home,
-            NavigationItem.Popular,
-            NavigationItem.TopRated,
             NavigationItem.UpComing
         )
         items.forEach { item ->

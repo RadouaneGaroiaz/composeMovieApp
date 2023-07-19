@@ -1,4 +1,5 @@
-package com.aldikitta.jetmvvmmovie.ui.screens.bottombar.toprated
+package com.aldikitta.jetmvvmmovie.ui.screens.bottombar.libary
+
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,6 +9,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class TopRatedViewModel @Inject constructor(repository: MovieRepository) : ViewModel() {
-    val topRatedMovies = repository.topRatedPagingDataSource().cachedIn(viewModelScope)
+class UpComingViewModel @Inject constructor(repository: MovieRepository) : ViewModel() {
+    val upcomingMovies = repository.upcomingPagingDataSource().cachedIn(viewModelScope)
 }

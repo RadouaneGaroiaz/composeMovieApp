@@ -1,4 +1,4 @@
-package com.aldikitta.jetmvvmmovie.ui.screens.bottombar.nowplaying
+package com.aldikitta.jetmvvmmovie.ui.screens.bottombar.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

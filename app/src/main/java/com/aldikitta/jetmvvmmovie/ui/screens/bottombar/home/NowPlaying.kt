@@ -1,4 +1,4 @@
-package com.aldikitta.jetmvvmmovie.ui.screens.bottombar.nowplaying
+package com.aldikitta.jetmvvmmovie.ui.screens.bottombar.home
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel

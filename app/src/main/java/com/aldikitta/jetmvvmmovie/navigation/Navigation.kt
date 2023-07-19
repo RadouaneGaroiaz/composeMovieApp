@@ -11,10 +11,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.aldikitta.jetmvvmmovie.R
-import com.aldikitta.jetmvvmmovie.ui.screens.bottombar.nowplaying.NowPlaying
-import com.aldikitta.jetmvvmmovie.ui.screens.bottombar.popular.Popular
-import com.aldikitta.jetmvvmmovie.ui.screens.bottombar.toprated.TopRated
-import com.aldikitta.jetmvvmmovie.ui.screens.bottombar.upcoming.Upcoming
+import com.aldikitta.jetmvvmmovie.ui.screens.bottombar.home.NowPlaying
+import com.aldikitta.jetmvvmmovie.ui.screens.bottombar.libary.Upcoming
 import com.aldikitta.jetmvvmmovie.ui.screens.moviedetail.MovieDetail
 
 
@@ -32,17 +30,6 @@ fun Navigation(
         composable(NavigationScreen.HOME) {
             NowPlaying(
                 navController = navController,
-            )
-        }
-
-        composable(NavigationScreen.POPULAR) {
-            Popular(
-                navController = navController
-            )
-        }
-        composable(NavigationScreen.TOP_RATED) {
-            TopRated(
-                navController = navController
             )
         }
         composable(NavigationScreen.UP_COMING) {
