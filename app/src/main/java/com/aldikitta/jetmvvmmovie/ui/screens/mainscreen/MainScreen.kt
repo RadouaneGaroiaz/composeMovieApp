@@ -60,8 +60,6 @@ fun MainScreen() {
             topBar = {
                 when (currentRoute(navController)) {
                     NavigationScreen.HOME,
-                    NavigationScreen.POPULAR,
-                    NavigationScreen.TOP_RATED,
                     NavigationScreen.UP_COMING
                     -> {
                         if (isAppBarVisible.value) {
