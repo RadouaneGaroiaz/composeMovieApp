@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.paging.PagingData
@@ -65,7 +66,7 @@ fun HomeScreen(
         LazyColumn(modifier = Modifier.padding(start = 5.dp, top = 5.dp, end = 5.dp)) {
 
             item {
-                Text("Popular Movies", style = MaterialTheme.typography.bodyLarge)
+                Text("Popular Movies", style = MaterialTheme.typography.bodyLarge,fontWeight = FontWeight.Bold)
                 LazyRow {
                     items(popularMoviesItems) { item ->
                         item?.let {
@@ -76,7 +77,7 @@ fun HomeScreen(
             }
 
             item {
-                Text("Top Rated Movies", style = MaterialTheme.typography.bodyLarge)
+                Text("Top Rated Movies", style = MaterialTheme.typography.bodyLarge,fontWeight = FontWeight.Bold)
                 LazyRow {
                     items(topRatedMoviesItems) { item ->
                         item?.let {
@@ -87,7 +88,7 @@ fun HomeScreen(
             }
 
             item {
-                Text("Upcoming Movies", style = MaterialTheme.typography.bodyLarge)
+                Text("Upcoming Movies", style = MaterialTheme.typography.bodyLarge,fontWeight = FontWeight.Bold)
                 LazyRow {
                     items(upcomingMoviesItems) { item ->
                         item?.let {

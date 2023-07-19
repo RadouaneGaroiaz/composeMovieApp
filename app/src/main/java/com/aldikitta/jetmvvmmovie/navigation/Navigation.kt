@@ -52,12 +52,6 @@ fun Navigation(
                     movieId
                 )
             }
-            /*movieItem?.fromPrettyJson<MovieItem>()
-                ?.let { movieObject ->
-                    MovieDetail(
-                        movieObject
-                    )
-                }*/
         }
 
     }
