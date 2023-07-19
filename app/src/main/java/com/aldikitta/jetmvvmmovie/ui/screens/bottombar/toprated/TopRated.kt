@@ -10,5 +10,5 @@ fun TopRated(
     navController: NavController
 ) {
     val topRatedViewModel = hiltViewModel<TopRatedViewModel>()
-    HomeScreen(navController, movies = topRatedViewModel.topRatedMovies)
+    //HomeScreen(navController, movies = topRatedViewModel.topRatedMovies)
 }

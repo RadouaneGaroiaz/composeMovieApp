@@ -10,5 +10,13 @@ fun NowPlaying(
     navController: NavController
 ){
     val nowPlayingViewModel = hiltViewModel<NowPlayingViewModel>()
-    HomeScreen(navController = navController, movies = nowPlayingViewModel.popularMovies)
+    //HomeScreen(navController = navController, movies = nowPlayingViewModel.popularMovies)
+    HomeScreen(
+        navController = navController,
+        popularMovies = nowPlayingViewModel.popularMovies,
+        topRatedMovies = nowPlayingViewModel.topRatedMovies,
+        upcomingMovies = nowPlayingViewModel.upcomingMovies
+    )
+
+
 }

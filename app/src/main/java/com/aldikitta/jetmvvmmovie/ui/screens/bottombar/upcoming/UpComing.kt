@@ -11,8 +11,8 @@ fun Upcoming(
     navController: NavController,
 ) {
     val upComingViewModel = hiltViewModel<UpComingViewModel>()
-    HomeScreen(
-        navController = navController,
-        movies = upComingViewModel.upcomingMovies
-    )
+//    HomeScreen(
+//        navController = navController,
+//        //movies = upComingViewModel.upcomingMovies
+//    )
 }

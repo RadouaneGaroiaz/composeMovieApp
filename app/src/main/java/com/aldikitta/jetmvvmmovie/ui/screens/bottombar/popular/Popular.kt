@@ -10,5 +10,5 @@ fun Popular(
     navController: NavController
 ) {
     val popularViewModel = hiltViewModel<PopularViewModel>()
-    HomeScreen(navController, movies = popularViewModel.popularMovies)
+    //HomeScreen(navController, movies = popularViewModel.popularMovies)
 }
