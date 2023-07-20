@@ -2,10 +2,7 @@ package com.aldikitta.jetmvvmmovie.ui.screens.moviedetail
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -36,12 +33,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.aldikitta.jetmvvmmovie.R
 import com.aldikitta.jetmvvmmovie.data.datasource.remote.ApiURL
-import com.aldikitta.jetmvvmmovie.data.model.BaseModel
-import com.aldikitta.jetmvvmmovie.data.model.MovieItem
-import com.aldikitta.jetmvvmmovie.data.model.artist.Artist
-import com.aldikitta.jetmvvmmovie.data.model.artist.Cast
 import com.aldikitta.jetmvvmmovie.data.model.moviedetail.MovieDetail
-import com.aldikitta.jetmvvmmovie.navigation.NavigationScreen
 import com.aldikitta.jetmvvmmovie.ui.components.CircularIndeterminateProgressBar
 import com.aldikitta.jetmvvmmovie.ui.components.appbar.AppBarWithArrow
 import com.aldikitta.jetmvvmmovie.utils.network.DataState
@@ -59,8 +51,6 @@ fun MovieDetail(navController: NavController, movieId: Int) {
 
     LaunchedEffect(key1 = true) {
         movieDetailViewModel.movieDetailApi(movieId)
-        movieDetailViewModel.recommendedMovieApi(movieId, page = 1)
-        movieDetailViewModel.movieCredit(movieId)
     }
 
     Scaffold(
