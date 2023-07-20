@@ -4,8 +4,6 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aldikitta.jetmvvmmovie.data.model.BaseModel
-import com.aldikitta.jetmvvmmovie.data.model.artist.Artist
 import com.aldikitta.jetmvvmmovie.data.model.moviedetail.MovieDetail
 import com.aldikitta.jetmvvmmovie.data.repository.MovieRepository
 import com.aldikitta.jetmvvmmovie.utils.network.DataState
@@ -19,8 +17,6 @@ import javax.inject.Inject
 class MovieDetailViewModel @Inject constructor(private val repository: MovieRepository) :
     ViewModel() {
     val movieDetail: MutableState<DataState<MovieDetail>?> = mutableStateOf(null)
-    val recommendedMovie: MutableState<DataState<BaseModel>?> = mutableStateOf(null)
-    val artist: MutableState<DataState<Artist>?> = mutableStateOf(null)
 
     //detail movie
     fun movieDetailApi(movieId: Int) {

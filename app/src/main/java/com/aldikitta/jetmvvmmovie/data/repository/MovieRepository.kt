@@ -6,8 +6,6 @@ import com.aldikitta.jetmvvmmovie.data.datasource.remote.paging.*
 import com.aldikitta.jetmvvmmovie.data.datasource.remote.ApiService
 import com.aldikitta.jetmvvmmovie.data.model.BaseModel
 import com.aldikitta.jetmvvmmovie.data.model.Genres
-import com.aldikitta.jetmvvmmovie.data.model.artist.Artist
-import com.aldikitta.jetmvvmmovie.data.model.artist.ArtistDetail
 import com.aldikitta.jetmvvmmovie.data.model.moviedetail.MovieDetail
 import com.aldikitta.jetmvvmmovie.utils.network.DataState
 import kotlinx.coroutines.flow.Flow
@@ -85,27 +83,9 @@ class MovieRepository @Inject constructor(
         }
     }
 
-    suspend fun movieCredit(movieId: Int): Flow<DataState<Artist>> = flow {
-        emit(DataState.Loading)
-        try {
-            val artistResult = apiService.movieCredit(movieId)
-            emit(DataState.Success(artistResult))
 
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
-        }
-    }
 
-    suspend fun artistDetail(personId: Int): Flow<DataState<ArtistDetail>> = flow {
-        emit(DataState.Loading)
-        try {
-            val artistDetailResult = apiService.artistDetail(personId)
-            emit(DataState.Success(artistDetailResult))
 
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
-        }
-    }
 
     fun nowPlayingPagingDataSource() = Pager(
         pagingSourceFactory = { NowPlayingPagingDataSource(apiService) },
@@ -127,9 +107,6 @@ class MovieRepository @Inject constructor(
         config = PagingConfig(pageSize = 1)
     ).flow
 
-    fun genrePagingDataSource(genreId: String) = Pager(
-        pagingSourceFactory = { GenrePagingDataSource(apiService, genreId) },
-        config = PagingConfig(pageSize = 1)
-    ).flow
+
 
 }
