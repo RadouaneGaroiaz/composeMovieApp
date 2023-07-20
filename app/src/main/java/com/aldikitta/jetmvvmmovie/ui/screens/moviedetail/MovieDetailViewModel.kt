@@ -31,21 +31,5 @@ class MovieDetailViewModel @Inject constructor(private val repository: MovieRepo
         }
     }
 
-    //similar movie
-    fun recommendedMovieApi(movieId: Int, page: Int) {
-        viewModelScope.launch {
-            repository.recommendedMovie(movieId, page).onEach {
-                recommendedMovie.value = it
-            }.launchIn(viewModelScope)
-        }
-    }
 
-    //artist movie
-    fun movieCredit(movieId: Int) {
-        viewModelScope.launch {
-            repository.movieCredit(movieId).onEach {
-                artist.value = it
-            }.launchIn(viewModelScope)
-        }
-    }
 }
