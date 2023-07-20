@@ -1,5 +1,6 @@
 package com.aldikitta.jetmvvmmovie.ui.screens.moviedetail
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -11,8 +12,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material.icons.filled.StarHalf
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -40,9 +43,12 @@ import com.aldikitta.jetmvvmmovie.data.model.artist.Cast
 import com.aldikitta.jetmvvmmovie.data.model.moviedetail.MovieDetail
 import com.aldikitta.jetmvvmmovie.navigation.NavigationScreen
 import com.aldikitta.jetmvvmmovie.ui.components.CircularIndeterminateProgressBar
+import com.aldikitta.jetmvvmmovie.ui.components.appbar.AppBarWithArrow
 import com.aldikitta.jetmvvmmovie.utils.network.DataState
 import com.aldikitta.jetmvvmmovie.utils.pagingLoadingState
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieDetail(navController: NavController, movieId: Int) {
     val movieDetailViewModel = hiltViewModel<MovieDetailViewModel>()
@@ -57,105 +63,109 @@ fun MovieDetail(navController: NavController, movieId: Int) {
         movieDetailViewModel.movieCredit(movieId)
     }
 
-    Column(modifier = Modifier.fillMaxSize()) {
-        CircularIndeterminateProgressBar(isDisplayed = progressBar.value, verticalBias = 0.4f)
-        movieDetail.value?.let { it ->
-            if (it is DataState.Success<MovieDetail>) {
-                Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                    Image(
-                        painter = rememberAsyncImagePainter(ApiURL.IMAGE_URL.plus(it.data.backdrop_path)),
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-//                            .fillMaxSize()
-                            .height(250.dp)
-                            .padding(start = 5.dp, end = 5.dp)
-                            .clip(MaterialTheme.shapes.large)
+    Scaffold(
+        topBar = {
+            movieDetail.value?.let { it ->
+                if (it is DataState.Success<MovieDetail>) {
+                    AppBarWithArrow(
+                        title = it.data.title,
+                        pressOnBack = { navController.popBackStack() }
                     )
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(start = 15.dp, end = 15.dp)
-                    ) {
-                        Text(
-                            text = it.data.title,
-                            modifier = Modifier.padding(top = 10.dp),
-                            overflow = TextOverflow.Ellipsis,
-                            maxLines = 2,
-                            style = MaterialTheme.typography.headlineMedium,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Row(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(bottom = 10.dp, top = 10.dp)
-                        ) {
-                            Column(
-                                Modifier.weight(1f),
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ) {
-                                Text(
-                                    text = stringResource(R.string.language),
-                                    fontWeight = FontWeight.Bold
-
-                                )
-                                Text(
-                                    text = it.data.original_language,
-                                    fontWeight = FontWeight.Bold
-                                )
-                            }
-                            Column(
-                                Modifier.weight(1f),
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ) {
-//                                Text(
-//                                    text = stringResource(R.string.rating),
-//                                    fontWeight = FontWeight.Bold
-//                                )
-                                RatingBar(current = it.data.vote_average.toFloat() / 2) // Assuming your rating is out of 10
-
-
-
-                                Text(
-                                    text = it.data.vote_average.toString(),
-                                    fontWeight = FontWeight.Bold
-                                )
-                            }
-                            Column(
-                                Modifier.weight(1f),
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ) {
-                                Text(
-                                    text = stringResource(R.string.release_date),
-                                    fontWeight = FontWeight.Bold
-
-                                )
-                                Text(
-                                    text = it.data.release_date,
-                                    fontWeight = FontWeight.Bold
-                                )
-                            }
-                        }
-                        Text(
-                            text = stringResource(R.string.description),
-                            fontWeight = FontWeight.Bold,
-                            style = MaterialTheme.typography.titleLarge
-                        )
-                        Text(
-                            text = it.data.overview,
-                            modifier = Modifier.padding(bottom = 10.dp)
-                        )
-                       }
-                    }
-
                 }
             }
         }
+    ) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            CircularIndeterminateProgressBar(isDisplayed = progressBar.value, verticalBias = 0.4f)
+            movieDetail.value?.let { it ->
+                if (it is DataState.Success<MovieDetail>) {
+                    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                        Image(
+                            painter = rememberAsyncImagePainter(ApiURL.IMAGE_URL.plus(it.data.backdrop_path)),
+                            contentDescription = null,
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .height(250.dp)
+                                .padding(start = 5.dp, end = 5.dp)
+                                .clip(MaterialTheme.shapes.large)
+                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(start = 15.dp, end = 15.dp)
+                        ) {
+                            Text(
+                                text = it.data.title,
+                                modifier = Modifier.padding(top = 10.dp),
+                                overflow = TextOverflow.Ellipsis,
+                                maxLines = 2,
+                                style = MaterialTheme.typography.headlineMedium,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(bottom = 10.dp, top = 10.dp)
+                            ) {
+                                Column(
+                                    Modifier.weight(1f),
+                                    horizontalAlignment = Alignment.CenterHorizontally
+                                ) {
+                                    Text(
+                                        text = stringResource(R.string.language),
+                                        fontWeight = FontWeight.Bold
 
-        movieDetail.pagingLoadingState {
-            progressBar.value = it
+                                    )
+                                    Text(
+                                        text = it.data.original_language,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                                Column(
+                                    Modifier.weight(1f),
+                                    horizontalAlignment = Alignment.CenterHorizontally
+                                ) {
+                                    RatingBar(current = it.data.vote_average.toFloat() / 2) // Assuming your rating is out of 10
+                                    Text(
+                                        text = it.data.vote_average.toString(),
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                                Column(
+                                    Modifier.weight(1f),
+                                    horizontalAlignment = Alignment.CenterHorizontally
+                                ) {
+                                    Text(
+                                        text = stringResource(R.string.release_date),
+                                        fontWeight = FontWeight.Bold
+
+                                    )
+                                    Text(
+                                        text = it.data.release_date,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                            }
+                            Text(
+                                text = stringResource(R.string.description),
+                                fontWeight = FontWeight.Bold,
+                                style = MaterialTheme.typography.titleLarge
+                            )
+                            Text(
+                                text = it.data.overview,
+                                modifier = Modifier.padding(bottom = 10.dp)
+                            )
+                        }
+                    }
+                }
+            }
+            movieDetail.pagingLoadingState {
+                progressBar.value = it
+            }
         }
     }
+}
+
 
 
 @Composable

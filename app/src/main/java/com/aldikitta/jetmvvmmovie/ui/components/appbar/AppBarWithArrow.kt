@@ -8,14 +8,12 @@ import androidx.compose.runtime.Composable
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBarWithArrow(
-    title: String?,
+    title: String,
     pressOnBack: () -> Unit
-)
-//    openFilters: () -> Unit)
-{
+) {
     SmallTopAppBar(
         title = {
-            Text(text = title ?: "")
+            Text(text = title)
         },
         navigationIcon = {
             IconButton(onClick = {

@@ -83,11 +83,11 @@ fun MainScreen() {
                             SearchBar(isAppBarVisible, mainScreenViewModel)
                         }
                     }
-                    else -> {
-                        AppBarWithArrow(navigationTitle(navController)) {
-                            navController.popBackStack()
-                        }
-                    }
+//                    else -> {
+//                        AppBarWithArrow(navigationTitle(navController)) {
+//                            navController.popBackStack()
+//                        }
+//                    }
                 }
             },
             bottomBar = {
