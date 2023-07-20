@@ -8,13 +8,4 @@ data class NavItem(
     val route: String
 )
 
-//val NavItems = listOf(
-//    NavItem(
-//        label = "Profile",
-//        icon = Icons.Filled.Person
-//        ),
-//    NavItem(
-//        label = "Settings",
-//        icon = Icons.Filled.Settings
-//    )
-//)
+
