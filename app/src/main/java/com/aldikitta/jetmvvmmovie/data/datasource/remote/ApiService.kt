@@ -1,9 +1,14 @@
 package com.aldikitta.jetmvvmmovie.data.datasource.remote
 
 import com.aldikitta.jetmvvmmovie.data.model.BaseModel
+import com.aldikitta.jetmvvmmovie.data.model.FavoriteBody
 import com.aldikitta.jetmvvmmovie.data.model.Genres
+import com.aldikitta.jetmvvmmovie.data.model.MovieStateResponse
 import com.aldikitta.jetmvvmmovie.data.model.moviedetail.MovieDetail
+import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -37,5 +42,12 @@ interface ApiService {
         @Query("page") page: Int,
         @Query("with_genres") genreId: String
     ): BaseModel
+
+
+    @GET(ApiURL.FAVORITE_MOVIE)
+    suspend fun getMovieState(@Path("movie_id") movieId: Int): MovieStateResponse
+
+    @POST(ApiURL.FAVORITE_MOVIE_POST)
+    suspend fun postFavorite(@Path("movie_id") movieId: Int, @Body body: FavoriteBody): Response<Unit>
 
 }

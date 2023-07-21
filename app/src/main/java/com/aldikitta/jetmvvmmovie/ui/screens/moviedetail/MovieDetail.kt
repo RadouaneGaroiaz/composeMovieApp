@@ -48,18 +48,32 @@ fun MovieDetail(navController: NavController, movieId: Int) {
         mutableStateOf(false)
     }
     val movieDetail = movieDetailViewModel.movieDetail
+    val favoriteState = movieDetailViewModel._isFavorite // Add this line
 
-    LaunchedEffect(key1 = true) {
+    // Fetch the favorite state of the movie
+    LaunchedEffect(key1 = movieId) {
         movieDetailViewModel.movieDetailApi(movieId)
+        movieDetailViewModel.fetchMovieState(movieId)
     }
 
     Scaffold(
         topBar = {
             movieDetail.value?.let { it ->
                 if (it is DataState.Success<MovieDetail>) {
+                    // Get the favorite state
+                    var isFavorite = false
+                    favoriteState.value?.let { state ->
+                        if (state is DataState.Success) {
+                            isFavorite = state.data
+                        }
+                    }
                     AppBarWithArrow(
                         title = it.data.title,
-                        pressOnBack = { navController.popBackStack() }
+                        pressOnBack = { navController.popBackStack() },
+                        isFavorite = isFavorite, // Pass the favorite state to the AppBar
+                        onToggleFavorite = {
+                            movieDetailViewModel.updateFavoriteState(movieId, !isFavorite)
+                        } // Toggle favorite state when IconButton is clicked
                     )
                 }
             }

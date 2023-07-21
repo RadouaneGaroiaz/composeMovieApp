@@ -13,5 +13,7 @@ object ApiURL {
     const val SEARCH_MOVIE ="search/movie?api_key=$API_KEY&language=en-US&page=1&include_adult=false"
     const val GENRE_LIST ="genre/movie/list?api_key=$API_KEY&language=en-US"
     const val GENRE_MOVIES_BY_ID ="discover/movie?api_key=$API_KEY&language=en-US"
+    const val FAVORITE_MOVIE ="movie/{movie_id}/account_states?api_key=$API_KEY&language=en-US"
+    const val FAVORITE_MOVIE_POST ="account/20144762/favorite?api_key=$API_KEY&session_id=<<session_id>>"
 
 }

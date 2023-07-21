@@ -5,7 +5,9 @@ import androidx.paging.PagingConfig
 import com.aldikitta.jetmvvmmovie.data.datasource.remote.paging.*
 import com.aldikitta.jetmvvmmovie.data.datasource.remote.ApiService
 import com.aldikitta.jetmvvmmovie.data.model.BaseModel
+import com.aldikitta.jetmvvmmovie.data.model.FavoriteBody
 import com.aldikitta.jetmvvmmovie.data.model.Genres
+import com.aldikitta.jetmvvmmovie.data.model.MovieStateResponse
 import com.aldikitta.jetmvvmmovie.data.model.moviedetail.MovieDetail
 import com.aldikitta.jetmvvmmovie.utils.network.DataState
 import kotlinx.coroutines.flow.Flow
@@ -80,6 +82,28 @@ class MovieRepository @Inject constructor(
 
         } catch (e: Exception) {
             emit(DataState.Error(e))
+        }
+    }
+
+    suspend fun getMovieState(movieId: Int): DataState<MovieStateResponse> {
+        return try {
+            val response = apiService.getMovieState(movieId)
+            DataState.Success(response)
+        } catch (e: Exception) {
+            DataState.Error(e)
+        }
+    }
+
+    suspend fun postFavorite(movieId: Int, favoriteBody: FavoriteBody): DataState<Unit> {
+        return try {
+            val response = apiService.postFavorite(movieId, favoriteBody)
+            if (response.isSuccessful) {
+                DataState.Success(Unit)
+            } else {
+                DataState.Error(Exception("Failed to update favorite status"))
+            }
+        } catch (e: Exception) {
+            DataState.Error(e)
         }
     }
 
