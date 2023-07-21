@@ -22,9 +22,6 @@ fun Navigation(
     navController: NavHostController,
     modifier: Modifier,
 ) {
-    val genreName = remember {
-        mutableStateOf("")
-    }
 
     NavHost(navController, startDestination = "home", modifier) {
         composable(NavigationScreen.HOME) {
@@ -32,7 +29,7 @@ fun Navigation(
                 navController = navController,
             )
         }
-        composable(NavigationScreen.UP_COMING) {
+        composable(NavigationScreen.Library) {
             Upcoming(
                 navController = navController
             )

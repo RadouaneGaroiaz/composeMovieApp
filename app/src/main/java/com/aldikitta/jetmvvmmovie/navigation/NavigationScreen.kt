@@ -2,7 +2,7 @@ package com.aldikitta.jetmvvmmovie.navigation
 
 object NavigationScreen {
     const val HOME = "home"
-    const val UP_COMING = "upcoming"
+    const val Library = "library"
 
     object MovieDetail {
         const val MOVIE_DETAIL = "movieDetail"
