@@ -25,7 +25,7 @@ sealed class NavigationItem(
 
 
     object UpComing : NavigationItem(
-        NavigationScreen.UP_COMING,
+        NavigationScreen.Library,
         {
             Icon(
                 Icons.Filled.Upcoming,

@@ -60,7 +60,7 @@ fun MainScreen() {
             topBar = {
                 when (currentRoute(navController)) {
                     NavigationScreen.HOME,
-                    NavigationScreen.UP_COMING
+                    NavigationScreen.Library,
                     -> {
                         if (isAppBarVisible.value) {
 //                            val appTitle: String =
@@ -88,7 +88,7 @@ fun MainScreen() {
             bottomBar = {
                 when (currentRoute(navController)) {
                     NavigationScreen.HOME,
-                    NavigationScreen.UP_COMING -> {
+                    NavigationScreen.Library -> {
                         BottomNavigationUI(navController)
                     }
                 }

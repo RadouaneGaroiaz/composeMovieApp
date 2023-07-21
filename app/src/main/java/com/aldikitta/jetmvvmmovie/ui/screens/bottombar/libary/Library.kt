@@ -9,7 +9,7 @@ import androidx.navigation.NavController
 fun Upcoming(
     navController: NavController,
 ) {
-    val upComingViewModel = hiltViewModel<UpComingViewModel>()
+    val libraryViewModel = hiltViewModel<LibraryViewModel>()
 //    HomeScreen(
 //        navController = navController,
 //        //movies = upComingViewModel.upcomingMovies
